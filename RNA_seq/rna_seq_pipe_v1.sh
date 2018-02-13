@@ -182,10 +182,10 @@ fi
 # --outFileNamePrefix 'step2.1_Star_'$name'_'
 if [[ $types == PE ]];
 then
-hisat2 -q -x /home/shaopengliu/resources/mm10/hisat2_index/ht2_idx_mm10 -1 'Trimed_'$name'_1.fastq'  -2 'Trimed_'$name'_2.fastq'  2> step2.1_hisat2_summary.txt | samtools view -bS - | samtools sort - -o step2.1_hisat2_sorted_$name'.bam'
+hisat2 -q -x $hisat2_ref -1 'Trimed_'$name'_1.fastq'  -2 'Trimed_'$name'_2.fastq'  2> step2.1_hisat2_summary.txt | samtools view -bS - | samtools sort - -o step2.1_hisat2_sorted_$name'.bam'
 echo "step2.1, mapping as PE" >> pipe_processing.log
 else
-hisat2 -q -x /home/shaopengliu/resources/mm10/hisat2_index/ht2_idx_mm10 -U 'Trimed_'$name'.fastq' 2> step2.1_hisat2_summary.txt | samtools view -bS - | samtools sort - -o step2.1_hisat2_sorted_$name'.bam'
+hisat2 -q -x $hisat2_ref -U 'Trimed_'$name'.fastq' 2> step2.1_hisat2_summary.txt | samtools view -bS - | samtools sort - -o step2.1_hisat2_sorted_$name'.bam'
 echo "step2.1, mapping as SE" >> pipe_processing.log
 fi
 
